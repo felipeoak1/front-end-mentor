@@ -77,8 +77,8 @@ function checkNumberInputs(element, number) {
     }
 
     if (element.name == "Day") {
-        let dateteste = new Date(Number(year.value), Number(month.value), 0 )
-        if (Number(element.value) > dateteste.getDate()) {
+        let dateTest = new Date(Number(year.value), Number(month.value), 0 )
+        if (Number(element.value) > dateTest.getDate()) {
             NumberInputs(element, 'Invalid day')
         }
     }
@@ -89,7 +89,7 @@ function checkNumberInputs(element, number) {
         }
     }
 
-    if (Number(element.value) > number || Number(element.value) <= 0) {
+    if (Number(element.value) > number || Number(element.value) <= 0 || element.value.indexOf('.') > -1) {
         NumberInputs(element, `Must be a valid ${element.name}.`)
     }
 }
@@ -170,11 +170,15 @@ function calcAge() {
 function calcMonths() {
     let monthAge;
     let monthText = document.getElementById("monthtext")
-    
+
     if (month.value > currentMonth + 1) {
         monthAge = Number(month.value) - (currentMonth + 1)
     } else {
         monthAge = (currentMonth + 1 ) - Number(month.value)
+    }
+
+    if (Number(day.value) > date.getDate()) {
+        monthAge -= 1
     }
 
     monthText.innerHTML = `${monthAge.toString().padStart(2, '0')}`
@@ -183,7 +187,12 @@ function calcMonths() {
 
 function calcDays() {
     let dayText = document.getElementById("daytext")
-    let dayNow = new Date().getDate()
+    let dayNow = date.getDate() - Number(day.value)
+    let pastMonth = new Date(Number(year.value), Number(month.value - 1), 0)
+    
+    if (Number(day.value) > date.getDate()) {
+        dayNow = 31 - (Number(day.value) - date.getDate())
+    }
 
     dayText.innerHTML = `${dayNow.toString().padStart(2, '0')}`
 }
