@@ -103,7 +103,7 @@ function checkInputs() {
     list.map(
         (e)=>{ 
             // Block user inputs
-            e.setAttribute('disabled', 'desabilitado')
+            e.setAttribute('disabled', 'off')
 
             // Checking if p element already exists, if not created it and set a wrong text for warning.
             if (e.value.length == 0) { 
