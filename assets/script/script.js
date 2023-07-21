@@ -188,7 +188,6 @@ function calcMonths() {
 function calcDays() {
     let dayText = document.getElementById("daytext")
     let dayNow = date.getDate() - Number(day.value)
-    let pastMonth = new Date(Number(year.value), Number(month.value - 1), 0)
     
     if (Number(day.value) > date.getDate()) {
         dayNow = 31 - (Number(day.value) - date.getDate())
