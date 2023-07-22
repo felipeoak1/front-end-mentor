@@ -88,7 +88,7 @@ function checkNumberInputs(element, number) {
     }
 
     if (Number(element.value) > number || Number(element.value) <= 0 || element.value.indexOf('.') > -1) {
-        NumberInputs(element, `Must be a valid ${element.name}.`)
+        styleErrorMessages(element, `Must be a valid ${element.name}.`)
     }
 }
 
