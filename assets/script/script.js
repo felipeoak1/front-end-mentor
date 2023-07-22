@@ -12,11 +12,9 @@ let control = true
 let day = document.getElementById("iday")
 let month = document.getElementById("imonth")
 let year = document.getElementById("iyear")
-
-let list = [day, month, year]
-
 let button = document.getElementById("button")
 let imgButton = document.getElementById("img-button")
+let list = [day, month, year]
 button.addEventListener('click', checkInputs)
 
 if (window.innerWidth > 375) {
@@ -54,7 +52,7 @@ function checkWidth() {
     }
 }
 
-function NumberInputs(element, text) {
+function styleErrorMessages(element, text) {
 
     if (element.parentElement.childNodes.length == 5){
         let p = document.createElement('p')
@@ -79,13 +77,13 @@ function checkNumberInputs(element, number) {
     if (element.name == "Day") {
         let dateTest = new Date(Number(year.value), Number(month.value), 0 )
         if (Number(element.value) > dateTest.getDate()) {
-            NumberInputs(element, 'Invalid day')
+            styleErrorMessages(element, 'Invalid day')
         }
     }
 
     if (element.name == "Month" && yearChoosed == date.getFullYear()) {
         if (Number(element.value) > date.getMonth() + 1) {
-            NumberInputs(element, `Must be in the past.`)
+            styleErrorMessages(element, `Must be in the past.`)
         }
     }
 
@@ -142,7 +140,7 @@ function checkInputs() {
             }
         )
 
-    // Back all configurations to normal after one second and half
+    // Back all configurations to normal after one second
     setTimeout(() => {
         list.map((e)=>{
             e.removeAttribute('disabled')
